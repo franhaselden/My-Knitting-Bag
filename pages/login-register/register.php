@@ -8,7 +8,7 @@
 			<input name="password2" type="password" placeholder="password again" />
 			<input name="email"type="email" placeholder="email" />
 			<input type="submit" value="Register" class="button" />
-			<a>Already registered?</a>
+			<div class="button click" data="already-registered">Already registered?</div>
 		</form>
 	</div>
 	<div class="about">What is MyKnittingBag.uk ?</div>
