@@ -9,3 +9,7 @@
 /* Buttons */
 .button{display:block;width:100%;box-sizing:border-box;border:1px solid red;padding:10px;text-align: center;margin-bottom:10px;cursor:pointer;}
 .button:hover{border:1px solid green;}
+
+/* Inputs */
+
+input{width:100%;font-size:16px;margin-bottom:10px;}

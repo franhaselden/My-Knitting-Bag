@@ -6,7 +6,7 @@
 			<input name="username" type="text" placeholder="username" />
 			<input name="password" type="password" placeholder="password" />
 			<input type="submit" value="Log in" class="button" />
-			<div class="button click" data="forgot-password">Forgot password?</div>
+			<div class="button click" data-page="forgot-password">Forgot password?</div>
 		</form>
 	</div>
 	<div class="about">What is MyKnittingBag.uk ?</div>
