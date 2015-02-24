@@ -1,3 +1,3 @@
-<script> <?php require_once '/js/site.js'; ?> </script>
+<script> <?php require_once 'js/site.js'; ?> </script>
 </body>
 </html>

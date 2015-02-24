@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION["last-page"] = "login-register/activate";
+?>
 <div class="wrapper register">
 	<h1>MKB</h1>
 	<div class="button-wrap">
