@@ -8,5 +8,5 @@ $_SESSION["last-page"] = "splash";
 		<div class="button click" data-page="login-register/login">Log in</div>
 		<div class="button click" data-page="login-register/register">Register</div>
 	</div>
-	<div class="about">What is MyKnittingBag.uk ?</div>
+	<div class="click" data-page="splash">Home</div>
 </div>

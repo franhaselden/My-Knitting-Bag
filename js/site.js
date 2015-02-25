@@ -13,13 +13,9 @@ $(document).on('click', '.click', function(){
 
 // Action performs the same as above, but instead is handed the page and runs without a click. Can be called via the function
 function loader(page){
-	console.log(page);
-	var pageToLoad = 'pages/'+page+".php";
-	console.log(pageToLoad);
-	$("#loadPane").load(pageToLoad);
+	$("#loadPane").load("pages/"+page+".php");
 	$(document).ajaxSuccess(function(event) {
 		$(".wrapper").fadeIn("slow");
-		console.log('success');
 	});
 }
 

@@ -12,5 +12,5 @@ $_SESSION["last-page"] = "login-register/activate";
 			<input type="submit" value="Activate" class="button" />
 		</form>
 	</div>
-	<div class="about">What is MyKnittingBag.uk ?</div>
+	<div class="click" data-page="splash">Home</div>
 </div>

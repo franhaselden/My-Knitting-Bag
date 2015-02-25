@@ -13,5 +13,5 @@ $_SESSION["last-page"] = "login-register/login";
 			<div class="click" data-page="forgot-password">Forgot password?</div>
 		</form>
 	</div>
-	<div class="about">What is MyKnittingBag.uk ?</div>
+	<div class="click" data-page="splash">Home</div>
 </div>

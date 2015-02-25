@@ -15,5 +15,5 @@ $_SESSION["last-page"] = "login-register/register";
 			<div class="button click" data-page="already-registered">Already registered?</div>
 		</form>
 	</div>
-	<div class="about">What is MyKnittingBag.uk ?</div>
+	<div class="click" data-page="splash">Home</div>
 </div>
