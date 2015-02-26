@@ -75,11 +75,15 @@ function confirmationEmail($username,$email){
 	$to = $email;
 	$subject = 'Welcome '.$username.'!';
 
-	$headers = "From: " . strip_tags($_POST['req-email']) . "\r\n";
-	$headers .= "Reply-To: ". strip_tags($_POST['req-email']) . "\r\n";
-	$headers .= "CC: susan@example.com\r\n";
+	$headers = "From: MyKnittingBag\r\n";
+	$headers .= "Reply-To: hello@myknittingbag.uk\r\n";
+	$headers .= "BCC: fran@haselden.co.uk\r\n";
 	$headers .= "MIME-Version: 1.0\r\n";
 	$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+	$theHTML = file_get_contents('../../emails/welcome.html');
+
+	mail($to, $subject, $theHTML, $headers);
 }
 
 
