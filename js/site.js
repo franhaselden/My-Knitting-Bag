@@ -19,4 +19,18 @@ function loader(page){
 	});
 }
 
+// This function can be used to post a form using AJAX. 
+function submitForm(url){
+	var url = 'actions/'+url;
+	$.ajax({
+		type: 'post',
+		url: url,
+		data: $('form').serialize(),
+		success: function(message) {
+			$('#successMessage').html(message)
+			$('#successMessage').fadeIn("slow");
+		}
+	});
+	return false;
+}
 
