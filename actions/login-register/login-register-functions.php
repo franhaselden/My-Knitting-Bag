@@ -1,15 +1,4 @@
 <?php
-function createActivationKey(){
-	$length = 50;
-	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
-
 function usernameAlreadyExists($username){
 	require '../connect-db.php';
 	$sql = "SELECT username FROM users WHERE username = '$username'";
@@ -68,10 +57,9 @@ function hashPassword($password){
 function insertRegisterDetails($username,$email,$password){
 	require '../connect-db.php';
 
-	$activationKey = createActivationKey(); // generate activation key
 	$todaysDate = date('Y-m-d'); // generate timestamp
 
-	$sql = "INSERT INTO users (username,email,password,activated,activationKey,dateRegistered) VALUES ('$username','$email','$password',0,'$activationKey','$todaysDate')";
+	$sql = "INSERT INTO users (username,email,password,dateRegistered) VALUES ('$username','$email','$password','$todaysDate')";
 	if ($result = mysqli_query($con,$sql)) {
 		$userID = mysqli_insert_id($con);
 		$_SESSION["userID"] = $userID;
@@ -82,5 +70,31 @@ function insertRegisterDetails($username,$email,$password){
 		return false;
 	}
 }
+
+function confirmationEmail($username,$email){
+	$to = $email;
+	$subject = 'Welcome '.$username.'!';
+
+	$headers = "From: " . strip_tags($_POST['req-email']) . "\r\n";
+	$headers .= "Reply-To: ". strip_tags($_POST['req-email']) . "\r\n";
+	$headers .= "CC: susan@example.com\r\n";
+	$headers .= "MIME-Version: 1.0\r\n";
+	$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 ?>

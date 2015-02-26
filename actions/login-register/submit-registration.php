@@ -34,10 +34,11 @@ if(strlen($password) > 7){
 									$hashedPassword = hashPassword($password);
 
 									// Submit details to DB
-									$success = insertRegisterDetails($username,$email,$hashedPassword);
-									if ($success == 1){
+									$submissionSuccess = insertRegisterDetails($username,$email,$hashedPassword);
+									if ($submissionSuccess == 1){
 										// continue
-										echo "Hello there ".$_SESSION["username"];
+										echo 'Your account has been created! You are now logged in.';
+										confirmationEmail($username,$email);
 									}else{
 										echo "We're sorry, there was an unknown error. Please try again or contact the site administrator.";
 									}
