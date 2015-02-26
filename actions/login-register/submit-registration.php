@@ -9,42 +9,52 @@ $password2 = htmlspecialchars($_POST["password2"]);
 $username = htmlspecialchars($_POST["username"]);
 $email = htmlspecialchars($_POST["email"]);
 
-if(strlen($password) !<= 7){
+if(strlen($password) > 7){
 	// continue
-	if(strlen($password2) !<= 7){
+	if(strlen($password2) > 7){
 		// continue
 		if($password == $password2){
 			// continue
-			if($username !<= 3){
+			if(strlen($username) > 3){
 				// continue
 				$usernameAlreadyExists = usernameAlreadyExists($username);
 				if ($usernameAlreadyExists == false){
 					// continue
 					if (!preg_match('/\s/',$username)){
 						// continue	
-						$emailAlreadyExists = emailAlreadyExists($email);
-						if ($emailAlreadyExists == false){
-							// VALIDATION COMPLETE
-
-							// Hash the password
-							$hashedPassword = hashPassword($password);
-
-							// Submit details to DB
-							$success = insertRegisterDetails($username,$email,$hashedPassword);
-							if ($success == 1){
+						if(!empty($email)){
+							// continue	
+							if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 								// continue
-								echo "Hello there".$_SESSION["username"];
+								$emailAlreadyExists = emailAlreadyExists($email);
+								if ($emailAlreadyExists == false){
+									// VALIDATION COMPLETE
+
+									// Hash the password
+									$hashedPassword = hashPassword($password);
+
+									// Submit details to DB
+									$success = insertRegisterDetails($username,$email,$hashedPassword);
+									if ($success == 1){
+										// continue
+										echo "Hello there ".$_SESSION["username"];
+									}else{
+										echo "We're sorry, there was an unknown error. Please try again or contact the site administrator.";
+									}
+								}else if ($emailAlreadyExists == true){
+									echo 'That email address is already in use';
+								}else{
+									echo "We're sorry, there was an unknown error. Please try again or contact the site administrator.";
+								}
 							}else{
-								echo "We're sorry, there was an unknown error. Please try again or contact the site administrator.";
+								echo 'That is not a valid email address';
 							}
-						}else if ($emailAlreadyExists == true){
-							echo 'That email address is already in use';
 						}else{
-							echo "We're sorry, there was an unknown error. Please try again or contact the site administrator.";
+							echo 'You must enter an email address';
 						}
 					}else{
 						echo 'Your username cannot contain any spaces';
-					}		
+					}
 				}else if ($usernameAlreadyExists == true){
 					echo "That username is already in use!";
 				}else{

@@ -10,7 +10,7 @@ $_SESSION["last-page"] = "login-register/register";
 			<input name="username" type="text" placeholder="username" />
 			<input name="password" type="password" placeholder="password" />
 			<input name="password2" type="password" placeholder="password again" />
-			<input name="email"type="email" placeholder="email" />
+			<input name="email" type="email" placeholder="email" />
 			<input type="submit" value="Register" class="button" />
 			<div class="click" data-page="login-register/login">Already registered?</div>
 		</form>
