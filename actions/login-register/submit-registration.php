@@ -29,7 +29,13 @@ if ($password == $password2){
 			
 			$hashedPassword = hashPassword($password);
 			$success = insertRegisterDetails($username,$email,$hashedPassword);
-			echo $success;
+			
+			if ($success == 1){
+				// continue
+				echo 'Hello there '.$_SESSION["username"];
+			}else{
+				echo "We're sorry, there was an unknown error. Please try again or contact the site administrator.";
+			}
 
 		}
 	}

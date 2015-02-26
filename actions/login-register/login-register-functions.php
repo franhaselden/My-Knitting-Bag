@@ -18,14 +18,19 @@ function usernameAlreadyExists($username){
 			while($row = mysqli_fetch_array($result)){
 			    $data[] = $row;
 			}
-		$dataReturned = $data[0]['username'];
+		if(!empty($data)){
+			// Record found
+			$dataReturned = $data[0]['username'];
+		}else{
+			// No record found - continue
+			$dataReturned = ''; // empty (no data)
+		}
 		mysqli_free_result($result);
 		if (!empty($dataReturned)) {
    			return true;
 		}else{
 			return false;
 		}
-		
 	}
 }
 
@@ -37,7 +42,13 @@ function emailAlreadyExists($email){
 			while($row = mysqli_fetch_array($result)){
 			    $data[] = $row;
 			}
-		$dataReturned = $data[0]['email'];
+		if(!empty($data)){
+			// Record found
+			$dataReturned = $data[0]['email'];
+		}else{
+			// No record found - continue
+			$dataReturned = ''; // empty (no data)
+		}
 		mysqli_free_result($result);
 		if (!empty($dataReturned)) {
    			return true;
@@ -56,19 +67,16 @@ function hashPassword($password){
 
 function insertRegisterDetails($username,$email,$password){
 	require '../connect-db.php';
+
 	$activationKey = createActivationKey(); // generate activation key
-	$todaysDate = date('Y-m-d G:i:s'); // generate timestamp
+	$todaysDate = date('Y-m-d'); // generate timestamp
 
-
-	echo $username.'<br />';
-	echo $email.'<br />';
-	echo $password.'<br />';
-	echo $activationKey.'<br />';
-	echo $todaysDate.'<br />';
-
-	$sql = "INSERT INTO users (username,email,password,activated,activationKey,dateRegistered) VALUES ('$username','$email','$password',0,$activationKey','$todaysDate')";
+	$sql = "INSERT INTO users (username,email,password,activated,activationKey,dateRegistered) VALUES ('$username','$email','$password',0,'$activationKey','$todaysDate')";
 	if ($result = mysqli_query($con,$sql)) {
-		mysqli_free_result($result);
+		$userID = mysqli_insert_id($con);
+		$_SESSION["userID"] = $userID;
+		$_SESSION["username"] = $username;
+		$_SESSION["isLoggedIn"] = true;
 		return true; // successful!
 	}else{
 		return false;
